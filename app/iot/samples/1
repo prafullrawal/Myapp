@@ -21,8 +21,7 @@ appClient.on("connect", function () {
 
 appClient.on("deviceEvent", function (deviceType, deviceId, eventType, format, payload) {
 console.log("Device Event from :: "+deviceType+" : "+deviceId+" of event "+eventType+" with payload : "+payload);
-var json = new JSON(payload);
-console.log(json.temperature);
+console.log(format+" : "+payload);
 //    if(payload.d.temperature > 28){
 //    	console.log("Rejected : temp =" + payload.d.temperature);
 //    }

@@ -83,10 +83,12 @@ function init() {
     $("#interval").html(interval);
 }
 
+function getRandomTemp(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 var sensors = {
-    temp: 15 + Math.random() * 4,
-    humidity: 75 + Math.random() * 5,
-    objectTemp: 23 + Math.random() * 4,
+    temp: getRandomTemp(1,30),
 };
 
 var lowerLimits = {
@@ -106,13 +108,8 @@ function publish() {
 
     var topic = "iot-2/evt/iotsensor/fmt/json";
     var payload = {
-        d: {
             name: devID,
-            temperature: sensors.temp,
-            humidity: sensors.humidity,
-            objectTemp: sensors.objectTemp,
-            location: metaData,
-        }
+            temperature:getRandomTemp(1,30) ,   
     };
     var message = new Messaging.Message(JSON.stringify(payload));
     message.destinationName = topic;
